@@ -1,11 +1,15 @@
 extends Area2D
 
 var speed = 220
-signal bulletDestroyed
+
+onready var playerScore = $"/root/PlayerScore"
 
 func _process(delta):
 	position -= transform.y * speed * delta
 
 func _on_VisibilityNotifier2D_screen_exited():
-	emit_signal("bulletDestroyed")
+	queue_free()
+
+func _on_HitBox_area_entered(_area):
+	playerScore.score_update(1)
 	queue_free()

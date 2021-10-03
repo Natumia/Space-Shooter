@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://Player/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://PressStartFont.tres" type="DynamicFont" id=2]
 [ext_resource path="res://World/ScoreAmount.gd" type="Script" id=3]
+[ext_resource path="res://Enemy/BasicEnemy.tscn" type="PackedScene" id=4]
 
 [sub_resource type="StyleBoxLine" id=1]
 color = Color( 1, 1, 1, 1 )
@@ -11,6 +12,9 @@ color = Color( 1, 1, 1, 1 )
 position = Vector2( 125.731, 186.47 )
 
 [node name="SceneLayout" type="StaticBody2D" parent="."]
+__meta__ = {
+"_edit_lock_": true
+}
 
 [node name="PurpleBox" type="Polygon2D" parent="SceneLayout"]
 color = Color( 0.145098, 0.0901961, 0.137255, 1 )
@@ -19,6 +23,9 @@ polygon = PoolVector2Array( -61.7307, -186.47, 66.2693, -186.47, 66.2693, 53.529
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="SceneLayout"]
 visible = false
 polygon = PoolVector2Array( -61.7307, 53.5299, -61.7307, -186.47, 66.2693, -186.47, 66.2693, 53.5299, -77.7307, 53.5299, -77.7307, 69.5299, 82.2693, 69.5299, 82.2693, -202.47, -77.7307, -202.47, -77.7307, 53.5299 )
+
+[node name="BasicEnemy" parent="." instance=ExtResource( 4 )]
+position = Vector2( 7.42461, -155.21 )
 
 [node name="Player" parent="." instance=ExtResource( 1 )]
 position = Vector2( 2.26929, 5.52988 )
