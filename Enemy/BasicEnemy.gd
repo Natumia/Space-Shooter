@@ -10,7 +10,10 @@ onready var playerScore = $"/root/PlayerScore"
 func _physics_process(delta):
 	velocity = velocity.move_toward(Vector2(0, 1) * speed, speed + delta)
 	
-	move_and_slide(velocity)
+	movement()
+
+func movement():
+	velocity = move_and_slide(velocity)
 
 func _on_HurtBox_area_entered(area):
 	print("Hit!")
@@ -19,5 +22,5 @@ func _on_HurtBox_area_entered(area):
 		playerScore.score_update(gainedScore)
 		queue_free()
 
-func _on_HurtBox_body_entered(body):
+func _on_HurtBox_body_entered(_body):
 	queue_free()

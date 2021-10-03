@@ -11,5 +11,5 @@ func _on_HitBox_area_entered(_area):
 	playerScore.score_update(1)
 	queue_free()
 
-func _on_PlayerBullet_body_entered(body):
+func _on_PlayerBullet_body_entered(_body):
 	queue_free()
