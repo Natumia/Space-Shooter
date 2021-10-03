@@ -1,40 +1,47 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://Player/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://PressStartFont.tres" type="DynamicFont" id=2]
 [ext_resource path="res://World/ScoreAmount.gd" type="Script" id=3]
 [ext_resource path="res://Enemy/BasicEnemy.tscn" type="PackedScene" id=4]
+[ext_resource path="res://World/EnemySpawner.gd" type="Script" id=5]
+[ext_resource path="res://Enemy/HeavyEnemy.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Enemy/FastEnemy.tscn" type="PackedScene" id=7]
 
 [sub_resource type="StyleBoxLine" id=1]
 color = Color( 1, 1, 1, 1 )
 
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 80, 32 )
+
 [node name="World" type="Node2D"]
-position = Vector2( 125.731, 186.47 )
 
 [node name="SceneLayout" type="StaticBody2D" parent="."]
+position = Vector2( 126, 186 )
+collision_mask = 0
 __meta__ = {
-"_edit_lock_": true
+"_edit_group_": true
 }
 
 [node name="PurpleBox" type="Polygon2D" parent="SceneLayout"]
 color = Color( 0.145098, 0.0901961, 0.137255, 1 )
-polygon = PoolVector2Array( -61.7307, -186.47, 66.2693, -186.47, 66.2693, 53.5299, -61.7307, 53.5299 )
+polygon = PoolVector2Array( -62, -194, 66, -194, 66, 62, -62, 62 )
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="SceneLayout"]
 visible = false
-polygon = PoolVector2Array( -61.7307, 53.5299, -61.7307, -186.47, 66.2693, -186.47, 66.2693, 53.5299, -77.7307, 53.5299, -77.7307, 69.5299, 82.2693, 69.5299, 82.2693, -202.47, -77.7307, -202.47, -77.7307, 53.5299 )
-
-[node name="BasicEnemy" parent="." instance=ExtResource( 4 )]
-position = Vector2( 7.42461, -155.21 )
+polygon = PoolVector2Array( -62, 54, -62, -186, 66, -186, 66, 54, -78, 54, -78, 70, 82, 70, 82, -202, -78, -202, -78, 54 )
+__meta__ = {
+"_edit_lock_": true
+}
 
 [node name="Player" parent="." instance=ExtResource( 1 )]
-position = Vector2( 2.26929, 5.52988 )
+position = Vector2( 128, 208 )
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
-margin_left = -122.555
-margin_top = -182.519
-margin_right = -64.5546
-margin_bottom = -154.519
+margin_left = 3.05506
+margin_top = 3.93725
+margin_right = 61.0555
+margin_bottom = 31.9373
 __meta__ = {
 "_edit_group_": true,
 "_edit_lock_": true,
@@ -73,3 +80,24 @@ margin_bottom = 8.0
 custom_fonts/font = ExtResource( 2 )
 text = "0"
 script = ExtResource( 3 )
+
+[node name="EnemySpawner" type="Node2D" parent="."]
+script = ExtResource( 5 )
+enemies = [ ExtResource( 4 ), ExtResource( 7 ), ExtResource( 6 ) ]
+
+[node name="SpawnCoolDown" type="Timer" parent="EnemySpawner"]
+wait_time = 0.5
+autostart = true
+
+[node name="EnemyDeathBox" type="StaticBody2D" parent="."]
+position = Vector2( 128, 336 )
+collision_layer = 32
+collision_mask = 0
+__meta__ = {
+"_edit_group_": true,
+"_edit_lock_": true
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="EnemyDeathBox"]
+shape = SubResource( 2 )
+[connection signal="timeout" from="EnemySpawner/SpawnCoolDown" to="EnemySpawner" method="_on_SpawnCoolDown_timeout"]

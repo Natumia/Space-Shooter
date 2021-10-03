@@ -36,3 +36,6 @@ func fire_bullet():
 	var bullet = ammunition.instance()
 	get_parent().add_child(bullet)
 	bullet.global_position = global_position
+
+func _on_HurtBox_area_entered(area):
+	queue_free()

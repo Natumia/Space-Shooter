@@ -1,6 +1,6 @@
 [gd_scene load_steps=8 format=2]
 
-[ext_resource path="res://Enemy/BasicEnemy.png" type="Texture" id=1]
+[ext_resource path="res://Enemy/FastEnemy.png" type="Texture" id=1]
 [ext_resource path="res://Mechanics/HitBox.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Enemy/BasicEnemy.gd" type="Script" id=3]
 [ext_resource path="res://Mechanics/HurtBox.tscn" type="PackedScene" id=4]
@@ -18,7 +18,9 @@ extents = Vector2( 7, 6 )
 collision_layer = 0
 collision_mask = 0
 script = ExtResource( 3 )
-gainedScore = 15
+speed = 55
+health = 1
+gainedScore = 10
 
 [node name="Sprite" type="Sprite" parent="."]
 texture = ExtResource( 1 )
