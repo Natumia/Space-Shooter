@@ -1,3 +1,68 @@
-[gd_scene format=2]
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://Player/Player.tscn" type="PackedScene" id=1]
+[ext_resource path="res://PressStartFont.tres" type="DynamicFont" id=2]
+[ext_resource path="res://World/ScoreAmount.gd" type="Script" id=3]
+
+[sub_resource type="StyleBoxLine" id=1]
+color = Color( 1, 1, 1, 1 )
 
 [node name="World" type="Node2D"]
+position = Vector2( 125.731, 186.47 )
+
+[node name="SceneLayout" type="StaticBody2D" parent="."]
+
+[node name="PurpleBox" type="Polygon2D" parent="SceneLayout"]
+color = Color( 0.145098, 0.0901961, 0.137255, 1 )
+polygon = PoolVector2Array( -61.7307, -186.47, 66.2693, -186.47, 66.2693, 53.5299, -61.7307, 53.5299 )
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="SceneLayout"]
+visible = false
+polygon = PoolVector2Array( -61.7307, 53.5299, -61.7307, -186.47, 66.2693, -186.47, 66.2693, 53.5299, -77.7307, 53.5299, -77.7307, 69.5299, 82.2693, 69.5299, 82.2693, -202.47, -77.7307, -202.47, -77.7307, 53.5299 )
+
+[node name="Player" parent="." instance=ExtResource( 1 )]
+position = Vector2( 2.26929, 5.52988 )
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+margin_left = -122.555
+margin_top = -182.519
+margin_right = -64.5546
+margin_bottom = -154.519
+__meta__ = {
+"_edit_group_": true,
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="CenterContainer" type="CenterContainer" parent="VBoxContainer"]
+margin_right = 58.0
+margin_bottom = 8.0
+
+[node name="ScoreTag" type="Label" parent="VBoxContainer/CenterContainer"]
+margin_left = 9.0
+margin_right = 49.0
+margin_bottom = 8.0
+custom_fonts/font = ExtResource( 2 )
+text = "Score"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HSeparator" type="HSeparator" parent="VBoxContainer"]
+margin_top = 12.0
+margin_right = 58.0
+margin_bottom = 16.0
+custom_styles/separator = SubResource( 1 )
+
+[node name="CenterContainer2" type="CenterContainer" parent="VBoxContainer"]
+margin_top = 20.0
+margin_right = 58.0
+margin_bottom = 28.0
+
+[node name="ScoreAmount" type="Label" parent="VBoxContainer/CenterContainer2"]
+margin_left = 25.0
+margin_right = 33.0
+margin_bottom = 8.0
+custom_fonts/font = ExtResource( 2 )
+text = "0"
+script = ExtResource( 3 )

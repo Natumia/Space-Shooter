@@ -19,6 +19,10 @@ config/name="Space Shooter"
 run/main_scene="res://World/World.tscn"
 config/icon="res://icon.png"
 
+[autoload]
+
+PlayerScore="*res://Singletons/PlayerScore.tscn"
+
 [display]
 
 window/size/width=256
