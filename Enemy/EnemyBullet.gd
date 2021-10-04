@@ -4,6 +4,8 @@ var target = Vector2.ZERO
 var rotate = rotation_degrees
 var speed = 70
 
+onready var findPlayer = $FindPlayer
+
 func _process(delta):
 	position += transform.x * speed * delta
 
@@ -16,3 +18,7 @@ func _on_PlayerBullet_body_entered(_body):
 func _on_FindPlayer_body_entered(body):
 	target = body.global_position
 	rotate = look_at(target)
+
+
+func _on_FindTimer_timeout():
+	findPlayer.monitoring = false

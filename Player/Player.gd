@@ -1,6 +1,8 @@
 extends KinematicBody2D
 
+var maxSpeed = 110
 var speed = 110
+var halfSpeed = 55
 var velocity = Vector2.ZERO
 var maxShots = 3
 
@@ -10,6 +12,7 @@ onready var fireCooldown = $FireCooldown
 
 func _physics_process(delta):
 	movement_input(delta)
+	slow_movement()
 	shoot_input()
 
 func movement_input(delta):
@@ -24,6 +27,12 @@ func movement_input(delta):
 
 func movement():
 	velocity = move_and_slide(velocity)
+
+func slow_movement():
+	if Input.is_action_pressed("GoSlow"):
+		speed = halfSpeed
+	else:
+		speed = maxSpeed
 
 func shoot_input():
 	if fireCooldown.time_left <= 0:

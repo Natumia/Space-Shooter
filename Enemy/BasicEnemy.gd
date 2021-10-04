@@ -3,6 +3,7 @@ extends KinematicBody2D
 export var speed = 35
 export var health = 3
 export var gainedScore = 0
+export var fireRate = 1.5
 
 export var canShoot = false
 
@@ -28,8 +29,8 @@ func shoot():
 		var bullet = ammunition.instance()
 		get_parent().add_child(bullet)
 		bullet.global_position = global_position
-		bullet.position.y += 5
-		shootCooldown.start()
+		bullet.position.y += 3
+		shootCooldown.start(fireRate)
 
 func _on_HurtBox_area_entered(area):
 	health -= area.damage

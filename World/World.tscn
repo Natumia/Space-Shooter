@@ -18,20 +18,43 @@ extents = Vector2( 80, 32 )
 [node name="World" type="Node2D"]
 script = ExtResource( 8 )
 
+[node name="Bullet Kill" type="StaticBody2D" parent="."]
+position = Vector2( 126, 186 )
+collision_layer = 128
+collision_mask = 0
+__meta__ = {
+"_edit_group_": true,
+"_edit_lock_": true
+}
+
+[node name="PurpleBox" type="Polygon2D" parent="Bullet Kill"]
+color = Color( 0.0784314, 0.0392157, 0.0745098, 1 )
+polygon = PoolVector2Array( -62, -194, 66, -194, 66, 62, -62, 62 )
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Bullet Kill"]
+visible = false
+polygon = PoolVector2Array( -62, 54, -62, -186, 66, -186, 66, 54, -78, 54, -78, 70, 82, 70, 82, -202, -78, -202, -78, 54 )
+__meta__ = {
+"_edit_lock_": true
+}
+
 [node name="SceneLayout" type="StaticBody2D" parent="."]
 position = Vector2( 126, 186 )
 collision_mask = 0
 __meta__ = {
-"_edit_group_": true
+"_edit_group_": true,
+"_edit_lock_": true
 }
 
 [node name="PurpleBox" type="Polygon2D" parent="SceneLayout"]
+position = Vector2( 0, 21.3125 )
+scale = Vector2( 1, 0.65625 )
 color = Color( 0.145098, 0.0901961, 0.137255, 1 )
 polygon = PoolVector2Array( -62, -194, 66, -194, 66, 62, -62, 62 )
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="SceneLayout"]
 visible = false
-polygon = PoolVector2Array( -62, 54, -62, -186, 66, -186, 66, 54, -78, 54, -78, 70, 82, 70, 82, -202, -78, -202, -78, 54 )
+polygon = PoolVector2Array( -62, 54, -62, -106, 66, -106, 66, 54, -78, 54, -78, 70, 82, 70, 82, -202, -78, -202, -78, 54 )
 __meta__ = {
 "_edit_lock_": true
 }
@@ -92,12 +115,12 @@ wait_time = 0.5
 autostart = true
 
 [node name="EnemyDeathBox" type="StaticBody2D" parent="."]
+visible = false
 position = Vector2( 128, 280 )
 collision_layer = 32
 collision_mask = 0
 __meta__ = {
-"_edit_group_": true,
-"_edit_lock_": true
+"_edit_group_": true
 }
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="EnemyDeathBox"]
