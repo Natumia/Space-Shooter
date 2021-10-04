@@ -6,13 +6,13 @@
 [ext_resource path="res://Mechanics/HurtBox.tscn" type="PackedScene" id=4]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 7, 6 )
+extents = Vector2( 9, 6 )
 
 [sub_resource type="RectangleShape2D" id=2]
-extents = Vector2( 7, 6 )
+extents = Vector2( 10, 7 )
 
 [sub_resource type="RectangleShape2D" id=3]
-extents = Vector2( 7, 6 )
+extents = Vector2( 10, 7 )
 
 [node name="Enemy" type="KinematicBody2D"]
 collision_layer = 0
@@ -20,7 +20,8 @@ collision_mask = 0
 script = ExtResource( 3 )
 speed = 15
 health = 6
-gainedScore = 25
+gainedScore = 45
+canShoot = true
 
 [node name="Sprite" type="Sprite" parent="."]
 texture = ExtResource( 1 )
@@ -29,7 +30,6 @@ texture = ExtResource( 1 )
 collision_mask = 2
 
 [node name="CollisionShape2D" parent="HitBox" index="0"]
-visible = false
 position = Vector2( 0, -1 )
 shape = SubResource( 1 )
 
@@ -46,6 +46,10 @@ collision_mask = 32
 visible = false
 position = Vector2( 0, -1 )
 shape = SubResource( 3 )
+
+[node name="ShootCooldown" type="Timer" parent="."]
+wait_time = 1.5
+one_shot = true
 [connection signal="area_entered" from="HurtBox" to="." method="_on_HurtBox_area_entered"]
 [connection signal="body_entered" from="HurtBox" to="." method="_on_HurtBox_body_entered"]
 
