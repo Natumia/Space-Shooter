@@ -2,7 +2,6 @@ extends KinematicBody2D
 
 var maxSpeed = 110
 var speed = 110
-var halfSpeed = 55
 var velocity = Vector2.ZERO
 var maxShots = 3
 
@@ -29,9 +28,9 @@ func movement():
 	velocity = move_and_slide(velocity)
 
 func slow_movement():
-	if Input.is_action_pressed("GoSlow"):
-		speed = halfSpeed
-	else:
+	if Input.is_action_just_pressed("GoSlow"):
+		speed = speed / 2
+	elif Input.is_action_just_released("GoSlow"):
 		speed = maxSpeed
 
 func shoot_input():

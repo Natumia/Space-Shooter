@@ -50,11 +50,11 @@ __meta__ = {
 position = Vector2( 0, 21.3125 )
 scale = Vector2( 1, 0.65625 )
 color = Color( 0.145098, 0.0901961, 0.137255, 1 )
-polygon = PoolVector2Array( -62, -194, 66, -194, 66, 62, -62, 62 )
+polygon = PoolVector2Array( -62, -139.143, 66, -139.143, 66, 62, -62, 62 )
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="SceneLayout"]
 visible = false
-polygon = PoolVector2Array( -62, 54, -62, -106, 66, -106, 66, 54, -78, 54, -78, 70, 82, 70, 82, -202, -78, -202, -78, 54 )
+polygon = PoolVector2Array( -62, 54, -62, -70, 66, -70, 66, 54, -78, 54, -78, 70, 82, 70, 82, -202, -78, -202, -78, 54 )
 __meta__ = {
 "_edit_lock_": true
 }
