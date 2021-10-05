@@ -115,7 +115,7 @@ wait_time = 1.5
 one_shot = true
 
 [node name="DifficultyTimer" type="Timer" parent="EnemySpawner"]
-wait_time = 30.0
+wait_time = 20.0
 one_shot = true
 autostart = true
 

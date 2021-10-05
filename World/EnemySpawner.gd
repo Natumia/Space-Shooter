@@ -1,7 +1,7 @@
 extends Node2D
 
 export(Array, PackedScene) var enemies
-var difficulty = 2.0
+var difficulty = 1.2
 
 onready var spawnCooldown = $SpawnCooldown
 onready var difficultyTimer = $DifficultyTimer
@@ -19,7 +19,7 @@ func _on_SpawnCooldown_timeout():
 	spawnCooldown.start(difficulty)
 
 func _on_DifficultyTimer_timeout():
-	difficulty -= 0.2
-	difficulty = clamp(difficulty, 0.3, 2)
-	if difficultyTimer != 0.3:
-		difficultyTimer.start(30)
+	difficulty -= 0.1
+	difficulty = clamp(difficulty, 0.3, 1.2)
+	if difficulty != 0.3:
+		difficultyTimer.start(20)
