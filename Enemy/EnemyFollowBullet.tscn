@@ -1,32 +1,32 @@
 [gd_scene load_steps=11 format=2]
 
-[ext_resource path="res://Enemy/EnemyBullet.gd" type="Script" id=1]
-[ext_resource path="res://Mechanics/HitBox.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Enemy/EnemyFollowBullet.gd" type="Script" id=1]
+[ext_resource path="res://Mechanics/HitBox.tscn" type="PackedScene" id=2]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 2, 2 )
 
-[sub_resource type="CircleShape2D" id=8]
+[sub_resource type="CircleShape2D" id=2]
 radius = 2.0
 
-[sub_resource type="CapsuleShape2D" id=7]
+[sub_resource type="CapsuleShape2D" id=3]
 radius = 134.0
 height = 130.0
 
-[sub_resource type="Gradient" id=9]
+[sub_resource type="Gradient" id=4]
 offsets = PoolRealArray( 0.496296, 1 )
 colors = PoolColorArray( 0.705882, 0.529412, 0.941176, 1, 0.705882, 0.529412, 0.941176, 0 )
 
-[sub_resource type="GradientTexture" id=10]
-gradient = SubResource( 9 )
+[sub_resource type="GradientTexture" id=5]
+gradient = SubResource( 4 )
 
-[sub_resource type="Curve" id=4]
+[sub_resource type="Curve" id=6]
 _data = [ Vector2( 0, 1 ), 0.0, -0.901248, 0, 0, Vector2( 1, 0 ), -0.930705, 0.0, 0, 0 ]
 
-[sub_resource type="CurveTexture" id=5]
-curve = SubResource( 4 )
+[sub_resource type="CurveTexture" id=7]
+curve = SubResource( 6 )
 
-[sub_resource type="ParticlesMaterial" id=6]
+[sub_resource type="ParticlesMaterial" id=8]
 emission_shape = 2
 emission_box_extents = Vector3( 1, 1, 1 )
 flag_disable_z = true
@@ -37,8 +37,8 @@ initial_velocity = 10.0
 initial_velocity_random = 1.0
 orbit_velocity = 0.0
 orbit_velocity_random = 0.0
-scale_curve = SubResource( 5 )
-color_ramp = SubResource( 10 )
+scale_curve = SubResource( 7 )
+color_ramp = SubResource( 5 )
 
 [node name="EnemyBullet" type="Area2D"]
 rotation = 1.5708
@@ -54,11 +54,11 @@ polygon = PoolVector2Array( -2, -2, -4.37114e-08, -1, 2, -2, 1, -4.37114e-08, 2,
 visible = false
 shape = SubResource( 1 )
 
-[node name="HitBox" parent="." instance=ExtResource( 3 )]
+[node name="HitBox" parent="." instance=ExtResource( 2 )]
 collision_mask = 2
 
 [node name="CollisionShape2D" parent="HitBox" index="0"]
-shape = SubResource( 8 )
+shape = SubResource( 2 )
 
 [node name="FindPlayer" type="Area2D" parent="."]
 collision_layer = 0
@@ -67,13 +67,13 @@ collision_mask = 64
 [node name="CollisionShape2D" type="CollisionShape2D" parent="FindPlayer"]
 position = Vector2( 201, 0 )
 rotation = 1.5708
-shape = SubResource( 7 )
+shape = SubResource( 3 )
 
 [node name="Particles2D" type="Particles2D" parent="."]
 position = Vector2( -1, 4.47035e-08 )
 amount = 20
 explosiveness = 0.05
-process_material = SubResource( 6 )
+process_material = SubResource( 8 )
 
 [node name="FindTimer" type="Timer" parent="."]
 wait_time = 0.1

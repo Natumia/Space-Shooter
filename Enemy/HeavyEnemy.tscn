@@ -1,9 +1,10 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://Enemy/HeavyEnemy.png" type="Texture" id=1]
 [ext_resource path="res://Mechanics/HitBox.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Enemy/BasicEnemy.gd" type="Script" id=3]
 [ext_resource path="res://Mechanics/HurtBox.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Enemy/EnemyRegularBullet.tscn" type="PackedScene" id=5]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 9, 6 )
@@ -14,14 +15,18 @@ extents = Vector2( 10, 7 )
 [sub_resource type="RectangleShape2D" id=3]
 extents = Vector2( 10, 7 )
 
-[node name="Enemy" type="KinematicBody2D"]
+[node name="Enemy" type="Area2D"]
 collision_layer = 0
 collision_mask = 0
 script = ExtResource( 3 )
 speed = 15
-health = 6
-gainedScore = 45
+health = 8
+gainedScore = 95
 canShoot = true
+shotType = 1
+fireRate = 4.0
+firePositionYAdjustment = 3
+ammunition = ExtResource( 5 )
 
 [node name="Sprite" type="Sprite" parent="."]
 texture = ExtResource( 1 )
@@ -48,7 +53,7 @@ position = Vector2( 0, -1 )
 shape = SubResource( 3 )
 
 [node name="ShootCooldown" type="Timer" parent="."]
-wait_time = 3.0
+wait_time = 2.0
 one_shot = true
 autostart = true
 [connection signal="area_entered" from="HurtBox" to="." method="_on_HurtBox_area_entered"]

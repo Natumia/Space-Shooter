@@ -45,5 +45,5 @@ func fire_bullet():
 	get_parent().add_child(bullet)
 	bullet.global_position = global_position
 
-func _on_HurtBox_area_entered(area):
+func _on_HurtBox_area_entered(_area):
 	queue_free()

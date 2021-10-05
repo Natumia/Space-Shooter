@@ -33,7 +33,7 @@ polygon = PoolVector2Array( -62, -194, 66, -194, 66, 62, -62, 62 )
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Bullet Kill"]
 visible = false
-polygon = PoolVector2Array( -62, 54, -62, -186, 66, -186, 66, 54, -78, 54, -78, 70, 82, 70, 82, -202, -78, -202, -78, 54 )
+polygon = PoolVector2Array( -62, 54, -62, -186, 66, -186, 66, 54, -190, 54, -190, 198, 194, 198, 194, -202, -190, -202, -190, 54 )
 __meta__ = {
 "_edit_lock_": true
 }
@@ -110,13 +110,18 @@ script = ExtResource( 3 )
 script = ExtResource( 5 )
 enemies = [ ExtResource( 4 ), ExtResource( 7 ), ExtResource( 6 ) ]
 
-[node name="SpawnCoolDown" type="Timer" parent="EnemySpawner"]
-wait_time = 0.5
+[node name="SpawnCooldown" type="Timer" parent="EnemySpawner"]
+wait_time = 1.5
+one_shot = true
+
+[node name="DifficultyTimer" type="Timer" parent="EnemySpawner"]
+wait_time = 30.0
+one_shot = true
 autostart = true
 
 [node name="EnemyDeathBox" type="StaticBody2D" parent="."]
 visible = false
-position = Vector2( 128, 280 )
+position = Vector2( 128, 296 )
 collision_layer = 32
 collision_mask = 0
 __meta__ = {
@@ -125,4 +130,5 @@ __meta__ = {
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="EnemyDeathBox"]
 shape = SubResource( 2 )
-[connection signal="timeout" from="EnemySpawner/SpawnCoolDown" to="EnemySpawner" method="_on_SpawnCoolDown_timeout"]
+[connection signal="timeout" from="EnemySpawner/SpawnCooldown" to="EnemySpawner" method="_on_SpawnCooldown_timeout"]
+[connection signal="timeout" from="EnemySpawner/DifficultyTimer" to="EnemySpawner" method="_on_DifficultyTimer_timeout"]
