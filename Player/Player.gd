@@ -9,6 +9,8 @@ var ammunition = preload("res://Player/PlayerBullet.tscn")
 
 onready var fireCooldown = $FireCooldown
 
+signal playerDied
+
 func _physics_process(delta):
 	movement_input(delta)
 	slow_movement()
@@ -46,4 +48,5 @@ func fire_bullet():
 	bullet.global_position = global_position
 
 func _on_HurtBox_area_entered(_area):
+	emit_signal("playerDied")
 	queue_free()
