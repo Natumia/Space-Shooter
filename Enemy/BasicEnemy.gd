@@ -24,25 +24,21 @@ func _physics_process(delta):
 
 func shoot():
 	if canShoot == true and shootCooldown.time_left == 0:
+		var rotationDegrees = 0
 		if shotType == 0:
-			bulletSpawn(90)
-			shootCooldown.start(fireRate)
+			rotationDegrees = 90
+			bulletSpawn(rotationDegrees)
 		if shotType == 1:
-			bulletSpawn(80)
-			bulletSpawn(90)
-			bulletSpawn(100)
-			shootCooldown.start(fireRate)
+			rotationDegrees = 80
+			for looping in 3:
+				bulletSpawn(rotationDegrees)
+				rotationDegrees += 10
 		if shotType == 2:
-			bulletSpawn(315)
-			bulletSpawn(270)
-			bulletSpawn(225)
-			bulletSpawn(180)
-			bulletSpawn(135)
-			bulletSpawn(90)
-			bulletSpawn(45)
-			bulletSpawn(0)
-			shootCooldown.start(fireRate)
-
+			rotationDegrees = 0
+			for looping in 8:
+				bulletSpawn(rotationDegrees)
+				rotationDegrees += 45
+		shootCooldown.start(fireRate)
 
 func bulletSpawn(direction):
 	var bullet = ammunition.instance()
