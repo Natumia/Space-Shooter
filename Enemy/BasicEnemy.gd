@@ -16,6 +16,7 @@ var velocity = Vector2.ZERO
 
 onready var playerScore = $"/root/PlayerScore"
 onready var shootCooldown = $ShootCooldown
+onready var shootSound = $AudioStreamPlayer
 export(PackedScene) var ammunition 
 
 func _ready():
@@ -42,6 +43,7 @@ func shoot():
 				bulletSpawn(rotationDegrees)
 				rotationDegrees += 45
 		shootCooldown.start(fireRate)
+		shootSound.play()
 
 func bulletSpawn(direction):
 	var bullet = ammunition.instance()
