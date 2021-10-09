@@ -18,8 +18,9 @@ extents = Vector2( 6, 5 )
 collision_layer = 0
 collision_mask = 0
 script = ExtResource( 3 )
-health = 2
-gainedScore = 20
+health = 1
+gainedScore = 70
+explosionSize = 0.3
 
 [node name="Sprite" type="Sprite" parent="."]
 texture = ExtResource( 1 )

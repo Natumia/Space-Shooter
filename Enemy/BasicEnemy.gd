@@ -1,8 +1,11 @@
 extends Area2D
 
+var explosion = preload("res://Mechanics/Explosion.tscn")
+
 export var speed = 35
 export var health = 3
 export var gainedScore = 0
+export var explosionSize = 2.0
 
 export var canShoot = false
 export(int, "Single_Shot", "Tri_Shot, Octa_Shot") var shotType
@@ -50,11 +53,20 @@ func bulletSpawn(direction):
 func _on_HurtBox_area_entered(area):
 	health -= area.damage
 	if health == 0:
+		createExplosion(explosionSize)
 		playerScore.score_update(gainedScore)
 		queue_free()
 
 func _on_HurtBox_body_entered(_body):
+	createExplosion(explosionSize)
 	queue_free()
 
 func playerDead():
 	canShoot = false
+
+func createExplosion(value):
+	var createexplode = explosion.instance()
+	get_parent().add_child(createexplode)
+	createexplode.global_position = self.global_position
+	createexplode.scale.x = value
+	createexplode.scale.y = value

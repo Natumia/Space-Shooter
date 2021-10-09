@@ -1,0 +1,37 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://Mechanics/Explosion.gd" type="Script" id=1]
+
+[sub_resource type="Gradient" id=1]
+offsets = PoolRealArray( 0, 0.22963, 0.481481, 0.740741, 1 )
+colors = PoolColorArray( 0.942383, 0.862756, 0.850353, 1, 1, 0.838903, 0.37037, 1, 0.868164, 0.296656, 0.149216, 1, 0.686275, 0.176471, 0.0470588, 0.470588, 0.0673828, 0, 0, 0 )
+
+[sub_resource type="GradientTexture" id=2]
+gradient = SubResource( 1 )
+
+[sub_resource type="ParticlesMaterial" id=3]
+flag_disable_z = true
+spread = 180.0
+gravity = Vector3( 0, 0, 0 )
+initial_velocity = 45.0
+initial_velocity_random = 0.75
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+scale = 1.5
+scale_random = 0.75
+color_ramp = SubResource( 2 )
+
+[node name="Explosion" type="Node2D"]
+script = ExtResource( 1 )
+
+[node name="Particles2D" type="Particles2D" parent="."]
+scale = Vector2( 2, 2 )
+emitting = false
+amount = 100
+one_shot = true
+explosiveness = 0.5
+process_material = SubResource( 3 )
+
+[node name="KillTimer" type="Timer" parent="."]
+wait_time = 2.0
+[connection signal="timeout" from="KillTimer" to="." method="_on_KillTimer_timeout"]

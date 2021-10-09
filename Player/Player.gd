@@ -1,7 +1,7 @@
 extends KinematicBody2D
 
-var maxSpeed = 110
-var speed = 110
+var maxSpeed = 100
+var speed = 100
 var velocity = Vector2.ZERO
 var maxShots = 3
 

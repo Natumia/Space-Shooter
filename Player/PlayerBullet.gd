@@ -13,7 +13,7 @@ func _on_HitBox_area_entered(_area):
 	var hitEffect = particleEffect.instance()
 	get_parent().add_child(hitEffect)
 	hitEffect.global_position = global_position
-	playerScore.score_update(3)
+	playerScore.score_update(9)
 	queue_free()
 
 func _on_PlayerBullet_body_entered(_body):

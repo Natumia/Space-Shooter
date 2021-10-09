@@ -2,7 +2,7 @@ extends Area2D
 
 var target = Vector2.ZERO
 var rotate = rotation_degrees
-var speed = 55
+var speed = 50
 
 onready var findPlayer = $FindPlayer
 onready var polygon = $Polygon2D
